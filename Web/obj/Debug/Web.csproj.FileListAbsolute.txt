@@ -1,0 +1,12 @@
+c:\dev.git\PlayWithAngularJS\Web\bin\Web.dll.config
+c:\dev.git\PlayWithAngularJS\Web\bin\Web.dll
+c:\dev.git\PlayWithAngularJS\Web\bin\Web.pdb
+c:\dev.git\PlayWithAngularJS\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+c:\dev.git\PlayWithAngularJS\Web\obj\Debug\Web.dll
+c:\dev.git\PlayWithAngularJS\Web\obj\Debug\Web.pdb
+C:\Dev.Prototype\PlayWithAngularJS\Web\bin\Web.dll.config
+C:\Dev.Prototype\PlayWithAngularJS\Web\bin\Web.dll
+C:\Dev.Prototype\PlayWithAngularJS\Web\bin\Web.pdb
+C:\Dev.Prototype\PlayWithAngularJS\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+C:\Dev.Prototype\PlayWithAngularJS\Web\obj\Debug\Web.dll
+C:\Dev.Prototype\PlayWithAngularJS\Web\obj\Debug\Web.pdb

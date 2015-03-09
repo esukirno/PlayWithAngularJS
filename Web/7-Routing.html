@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>7 - Routing</title>
+</head>
+<body ng-app="myApp">
+    
+    <script type="text/ng-template" id="step1.html">
+        <span>This is step1</span>
+        
+        <a href="#/step2">Go to Step 2</a>
+    </script>
+    
+    <script type="text/ng-template" id="step2.html">
+        <span>This is step2</span>
+        <a href="#/step3">Go to Step 3</a>
+    </script>
+    
+    <script type="text/ng-template" id="step3.html">
+        <span>This is step3</span>
+    </script>
+
+    <form id="myForm" name="myForm" ng-controller="myController">
+        <div ng-view></div>
+    </form>
+    
+    
+    <!-- Scripts -->
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+    <script src="Scripts/angular-route/angular-route.js"></script>
+
+    
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', ['ngRoute']);
+
+        myApp.controller('myController', function() {
+
+        });
+
+        myApp.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.
+                when('/step1', {
+                    templateUrl: 'step1.html',
+                    controller: 'myController'
+                }).
+                when('/step2', {
+                    templateUrl: 'step2.html',
+                    controller: 'myController'
+                }).
+                when('/step3', {
+                    templateUrl: 'step3.html',
+                    controller: 'myController'
+                }).
+                otherwise({
+                    redirectTo: '/step1'
+                });
+        }]);
+
+    </script>
+</body>
+</html>

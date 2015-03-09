@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>4 - Is Dirty</title>
+</head>
+<body ng-app="myApp">
+    
+    
+    <form id="myForm" name="myForm" ng-controller="myController">
+        
+        <div>
+            <p>Input Box</p>
+            <p><input type="text" id="myTextBox" name="myTextBox" ng-model="textBoxModel.value" required /> Is Dirty = {{ myForm.myTextBox.$dirty }}, Is Valid = {{ myForm.myTextBox.$valid }}, Is Pristine = {{ myForm.myTextBox.$pristine }}</p>        
+
+        </div>
+        <div>
+            <p>Check Box</p>
+            <p><input type="checkbox" ng-model="checkBoxModel.value" ng-true-value="'OK'" ng-false-value="'Not OK'" /></p>
+        </div>
+        <div>
+            <p>Email Box</p>
+            <p><input type="email" ng-model="emailBox.value" /></p>
+        </div>
+        <div>
+            <p>Radio</p>
+            <p><input type="radio" ng-model="radioModel.value" value="red" /> Red</p>
+            <p><input type="radio" ng-model="radioModel.value" value="blue" /> Blue</p>
+            <p><input type="radio" ng-model="radioModel.value" value="green" /> Green</p>
+        </div>
+        
+        How's my form?
+        
+        Is Dirty = {{ myForm.$dirty }}, Is Valid = {{ myForm.$valid }}, Is Pristine = {{ myForm.$pristine }}
+    </form>
+    
+    
+    <!-- Scripts -->
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+    
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('myController', function ($scope) {
+
+            $scope.textBoxModel = { value: 'hello'};
+            $scope.checkBoxModel = {};
+            $scope.emailBoxModel = {};
+            $scope.radioModel = {};
+
+            
+
+            $scope.$watch('textBoxModel.value + checkBoxModel.value', function(newValue, oldValue) {
+
+            });
+        });
+
+    </script>
+</body>
+</html>

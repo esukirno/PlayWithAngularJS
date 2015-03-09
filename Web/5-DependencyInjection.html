@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>5 - Dependency Injection</title>
+</head>
+<body ng-app="myApp">
+    
+    
+    <form id="myForm" name="myForm" ng-controller="myController">
+        
+        <p ng-repeat="c in countries">{{ c.name }}</p>
+        
+        
+        <p>{{ addResult }}</p>
+        
+        <p>{{ cubeResult }}</p>
+    </form>
+    
+    
+    <!-- Scripts -->
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+    
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', ['mathModule']);
+
+        myApp.controller('myController', function ($scope, $http, mathService, calculatorService) {
+
+            $scope.countries = [];
+            //$http.get('/country.json').success(function(data) {
+            //    $scope.countries = data;
+            //});
+
+            $scope.addResult = mathService.add(1, 1);
+            $scope.cubeResult = calculatorService.cube(3);
+        });
+
+
+        var mathModule = angular.module('mathModule', []);
+        mathModule.service('mathService', function () {
+            this.add = function (a, b) { return a + b; };
+
+            this.subtract = function (a, b) { return a - b; };
+
+            this.multiply = function (a, b) { return a * b; };
+
+            this.divide = function (a, b) { return a / b; };
+        });
+
+        
+
+        mathModule.service('calculatorService', function (mathService) {
+            this.square = function (a) { return mathService.multiply(a, a); };
+            this.cube = function (a) { return mathService.multiply(a, mathService.multiply(a, a)); };
+        });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>6 - Template</title>
+</head>
+<body ng-app="myApp">
+    <!-- Reference 
+        http://lostechies.com/gabrielschenker/2013/12/28/angularjspart-6-templates/
+        -->
+
+    <script type="text/ng-template" id="step1.html">
+        <span>This is step1</span>
+        <p>Name: {{ step1Model.name }}, Age: {{ step1Model.age }}</p>
+    </script>
+    
+    <script type="text/ng-template" id="step2.html">
+        <span>This is step2</span>
+        <p>Name: {{ step2Model.name }}, Age: {{ step2Model.age }}</p>
+    </script>
+    
+    <script type="text/ng-template" id="step3.html">
+        <span>This is step3</span>
+        <p>Name: {{ step3Model.name }}, Age: {{ step3Model.age }}</p>
+    </script>
+
+    <form id="myForm" name="myForm" ng-controller="myController">
+        
+        <div>
+            <select id="selectStep" name="selectStep" ng-model="templateId">
+                <option ng-repeat="step in steps" ng-value="step" ng-selected="step == templateId">Step {{ step }}</option>
+
+            </select>
+            <br />
+            <br />
+        </div>
+        <div ng-show="templateId == 1" ng-include="'step1.html'"></div>
+        <div ng-show="templateId == 2" ng-include="'step2.html'"></div>
+        <div ng-show="templateId == 3" ng-include="'step3.html'"></div>
+    </form>
+    
+    
+    <!-- Scripts -->
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+    
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('myController', function ($scope) {
+
+            $scope.step1Model =
+            {
+                name: 'Beast',
+                age: 35
+            };
+
+            $scope.step2Model =
+            {
+                name: 'Xavier',
+                age: 64
+            }
+
+            $scope.step3Model =
+            {
+                name: 'Trinity',
+                age: 27
+            }
+
+            $scope.steps = [1, 2, 3];
+            $scope.templateId = 1;
+        });
+
+    </script>
+</body>
+</html>

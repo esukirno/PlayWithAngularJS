@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>1 - Model Binding</title>
+</head>
+<body>
+
+
+    <form id="myForm" name="myForm" ng-controller="myController">
+        Type value in the following box
+        <input id="myInput" ng-model="someValue" />
+
+        <br />
+        This is your typed-in value
+        {{ someValue }}
+        <div ng-bind="someValue"></div>
+    </form>
+
+
+    <!-- Scripts -->
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+
+    <script type="text/javascript">
+
+
+        var myApp = angular.module('myApp', []);
+
+        myApp.controller('myController', function ($scope) {
+            $scope.someValue = '';
+        });
+
+    </script>
+</body>
+</html>

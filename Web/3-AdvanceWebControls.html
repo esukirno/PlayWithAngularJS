@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>3 - Advance Web Controls</title>
+    
+    <link href="Scripts/jquery-ui/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <link href="Scripts/angular-ui-select/dist/select.css" rel="stylesheet" />
+    <link href="Scripts/select2/select2.css" rel="stylesheet" />
+    <style>
+        .select2 > .select2-choice.ui-select-match {
+            /* Because of the inclusion of Bootstrap */
+            height: 29px;
+        }
+    </style>
+    
+    <script src="Scripts/jquery/dist/jquery.js"></script>
+    <script src="Scripts/jquery-ui/jquery-ui.js"></script>
+    <script src="Scripts/angular/angular.js"></script>
+    <script src="Scripts/angular-ui-date/src/date.js"></script>
+    <script src="Scripts/angular-sanitize/angular-sanitize.js"></script>
+    <script src="Scripts/angular-ui-select/dist/select.js"></script>
+
+</head>
+<body ng-controller="myController">
+       
+    <form id="myForm" name="myForm">
+
+        <div>
+            <p>Date time picker</p>
+            <p><input type="text" ui-date ui-date-format="DD, d MM, yy" ng-model="dateModel"></p>
+
+        </div>
+
+
+        <div>
+            <p>Select drop down</p>
+            
+            <ui-select ng-model="person.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
+                <ui-select-match placeholder="Select a person...">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="person in people | propsFilter: {name: $select.search, age: $select.search}">
+                    <div ng-bind-html="person.name | highlight: $select.search"></div>
+                    <small>
+                        email: {{person.email}}
+                        age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+                    </small>
+                </ui-select-choices>
+            </ui-select>
+            
+        </div>
+    </form>
+
+
+
+
+    <script type="text/javascript">
+
+        var myApp = angular.module('myApp', ['ngSanitize', 'ui.select', 'ui.date']);
+
+        myApp.controller('myController', function ($scope) {
+
+            $scope.dateModel = '';
+
+            $scope.people = [
+              { name: 'Adam', email: 'adam@email.com', age: 10 },
+              { name: 'Amalie', email: 'amalie@email.com', age: 12 },
+              { name: 'Wladimir', email: 'wladimir@email.com', age: 30 },
+              { name: 'Samantha', email: 'samantha@email.com', age: 31 },
+              { name: 'Estefanía', email: 'estefanía@email.com', age: 16 },
+              { name: 'Natasha', email: 'natasha@email.com', age: 54 },
+              { name: 'Nicole', email: 'nicole@email.com', age: 43 },
+              { name: 'Adrian', email: 'adrian@email.com', age: 21 }
+            ];
+
+            $scope.person = {};
+
+
+        });
+
+        myApp.filter('propsFilter', function () {
+            return function (items, props) {
+                var out = [];
+
+                if (angular.isArray(items)) {
+                    items.forEach(function (item) {
+                        var itemMatches = false;
+
+                        var keys = Object.keys(props);
+                        for (var i = 0; i < keys.length; i++) {
+                            var prop = keys[i];
+                            var text = props[prop].toLowerCase();
+                            if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                                itemMatches = true;
+                                break;
+                            }
+                        }
+
+                        if (itemMatches) {
+                            out.push(item);
+                        }
+                    });
+                } else {
+                    // Let the output be the input untouched
+                    out = items;
+                }
+
+                return out;
+            }
+        });
+
+    </script>
+</body>
+
+</html>
